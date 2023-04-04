@@ -5,6 +5,7 @@ phases:
       python: 3.8
   pre_build:
     commands:
-      - cd githubActions_codeBuild_ecs
+      - ls -al
+      - pwd
       - pip install -r requirements.txt
       - python app_test.py
