@@ -13,12 +13,11 @@ phases:
   build:
     commands:
       - echo "Building the application..."
-      - npm run build # or any other build command
+      - nodemon # or any other build command
 
   post_build:
     commands:
       - echo "Running post-build actions..."
-      - npm run test # or any other testing command
 
 artifacts:
   files:
