@@ -3,17 +3,25 @@ version: 0.2
 phases:
   install:
     commands:
+      # upgrade the version of node.js
       - node -v
+      # using node v18
       - n 18
       - node -v
       - echo "Installing dependencies..."
+      # cd root dir
       - cd eks-test
+      # install dependencies
       - npm install # or any other package manager command
+  
+  pre_build:
+    commands:
+      - $(aws ecr get-login --no-include-email --region ${AWS_REGION})
 
   build:
     commands:
-      - echo "Building the application..."
-      - npm start # or any other build command
+      - docker build -t ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_NAME}:${IMAGE_TAG} .
+      - docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_NAME}:${IMAGE_TAG}
 
   post_build:
     commands:
