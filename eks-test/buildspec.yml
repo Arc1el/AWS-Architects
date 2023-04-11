@@ -32,5 +32,4 @@ phases:
       - printf '[{"name":"hmkim-cube","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
   
   artifacts:
-    files: 
-      - '**/*'
+    files: imagedefinitions.json
