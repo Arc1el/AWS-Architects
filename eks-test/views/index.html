@@ -1,11 +1,59 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>3D Cube Example</title>
-  </head>
-  <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="main.js"></script>
-  </body>
+<head>
+  <title>3D Cube</title>
+  <style>
+    #container {
+      position: relative;
+      height: 400px;
+      width: 400px;
+      perspective: 1000px;
+    }
+    #cube {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100px;
+      height: 100px;
+      transform-style: preserve-3d;
+    }
+    #cube .face {
+      position: absolute;
+      height: 100px;
+      width: 100px;
+      opacity: 0.8;
+    }
+    #cube .face:nth-child(1) {
+      transform: rotateY(0deg) translateZ(50px);
+      background-color: red;
+    }
+    #cube .face:nth-child(2) {
+      transform: rotateY(90deg) translateZ(50px);
+      background-color: green;
+    }
+    #cube .face:nth-child(3) {
+      transform: rotateY(180deg) translateZ(50px);
+      background-color: blue;
+    }
+    #cube .face:nth-child(4) {
+      transform: rotateY(-90deg) translateZ(50px);
+      background-color: yellow;
+    }
+    #cube .face:nth-child(5) {
+      transform: rotateX(90deg) translateZ(50px);
+      background-color: pink;
+    }
+    #cube .face:nth-child(6) {
+      transform: rotateX(-90deg) translateZ(50px);
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="cube"></div>
+  </div>
+  <script src="main.js"></script>
+</body>
 </html>

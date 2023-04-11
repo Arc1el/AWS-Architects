@@ -1,39 +1,20 @@
-// Set up the scene, camera, and renderer
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(
-  75,
-  window.innerWidth / window.innerHeight,
-  0.1,
-  1000
-);
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+const cube = document.getElementById("cube");
 
-// Create a cube and add it to the scene
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
-const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+// Change the cube's color randomly every second
+setInterval(() => {
+  const randomColor = `rgb(${getRandomInt(0, 255)}, ${getRandomInt(0, 255)}, ${getRandomInt(0, 255)})`;
+  cube.style.backgroundColor = randomColor;
+}, 1000);
 
-// Position the camera
-camera.position.z = 5;
+// Move the cube randomly when the mouse is over it
+cube.addEventListener("mouseover", () => {
+  const rotationX = getRandomInt(-10, 10);
+  const rotationY = getRandomInt(-10, 10);
+  const rotationZ = getRandomInt(-10, 10);
+  cube.style.transform += `rotateX(${rotationX}deg) rotateY(${rotationY}deg) rotateZ(${rotationZ}deg)`;
+});
 
-// Create a function to handle mouse interaction with the cube
-function onMouseClick(event) {
-  // Generate a random color for the cube
-  const color = Math.random() * 0xffffff;
-  cube.material.color.set(color);
+// Utility function to get a random integer between min and max (inclusive)
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
-// Add an event listener for mouse clicks
-window.addEventListener('click', onMouseClick);
-
-// Render the scene
-function animate() {
-  requestAnimationFrame(animate);
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.01;
-  renderer.render(scene, camera);
-}
-animate();
