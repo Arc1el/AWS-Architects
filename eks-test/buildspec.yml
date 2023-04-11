@@ -3,11 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
-      # upgrade the version of node.js
-      - node -v
-      # using node v18
       - n 18
-      - node -v
       - echo "Installing dependencies..."
       # cd root dir
       - cd eks-test
@@ -30,6 +26,7 @@ phases:
     commands:
       - echo "Running post-build actions..."
       - printf '[{"name":"hmkim-cube","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - ls -al
   
 artifacts:
   files: imagedefinitions.json
