@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - node -v
+      - n 18
+      - node -v
+      - echo "Installing dependencies..."
+      - npm install # or any other package manager command
+
+  build:
+    commands:
+      - echo "Building the application..."
+      - npm run build # or any other build command
+
+  post_build:
+    commands:
+      - echo "Running post-build actions..."
+      - npm run test # or any other testing command
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'dist'
