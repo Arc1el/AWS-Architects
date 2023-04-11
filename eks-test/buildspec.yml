@@ -31,5 +31,3 @@ phases:
       - echo "Running post-build actions..."
       - printf '[{"name":"hmkim-cube","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
   
-  artifacts:
-    files: imagedefinitions.json
